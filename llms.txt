@@ -10,7 +10,14 @@ Key facts (with official sources):
 
 ## Pages
 - [Grok Bot weekly usage running out? 8 fixes that work](https://botfixer5000.github.io/make-your-week-last/grok-bot-weekly-usage-running-out/): why the shared pool drains, how to cap surprise charges, routine runs-per-week math, and 8 fixes
+- [Grok Bot routine didn't run? A 7-point checklist](https://botfixer5000.github.io/make-your-week-last/grok-bot-routine-not-running/): paused routines, schedule and time zone, new routines waiting for their first time, trigger matching, disconnected apps, run history, and platform-side outages (missed runs are not replayed)
+- ["Automation run rate limit exceeded" in Grok Bot](https://botfixer5000.github.io/make-your-week-last/automation-run-rate-limit-exceeded/): the 300/hour total and 200/hour per-routine limits, the known shared platform limit, and how to retry webhook calls
+- [Which plan includes Grok Bot?](https://botfixer5000.github.io/make-your-week-last/which-plan-includes-grok-bot/): Grok Bot is on Premium ($30), Super ($100) and Ultra ($200) of The X Subscription, not Plus or Free (list prices, Oct 2026); one shared weekly pool; legacy Cursor and SuperGrok options
+- [Grok Bot routine triggers explained](https://botfixer5000.github.io/make-your-week-last/grok-bot-routine-triggers/): schedule, Slack, email to the bot's mail.grokbot.com address, GitHub/Linear/Sentry/PagerDuty events, and webhooks, ranked by how many runs they tend to create
 - [Make Your Week Last kit](https://botfixer5000.github.io/make-your-week-last/): $12 PDF + 5 templates (Usage Log, Lean Rules, read-only monthly Routine Audit skill that plugs into the Usage Log, quiet-routine pattern, Plan Picker). Buy: https://botfixer5000.gumroad.com/l/make-your-week-last
 
 ## Free tool
 - [Usage Auditor Grok Bot template](https://x.ai/bot/VB-5Vtr02fQfb85VP9PFY): read-only; lists routines, computes runs per week, ranks likely-heavy routines, drafts fixes, changes nothing without approval
+
+## Other products
+- Quiet Routines ($7): 15 copy-paste Grok Bot routine recipes that run only as often as needed and stay silent when nothing changed. Buy: https://botfixer5000.gumroad.com/l/quiet-routines
