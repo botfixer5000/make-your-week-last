@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>“Automation run rate limit exceeded” in Grok Bot, explained</title>
+<meta name="description" content="What the Grok Bot error “Automation run rate limit exceeded” means, how to tell your hourly limit from the shared one, and how to retry.">
+<link rel="canonical" href="https://botfixer5000.github.io/make-your-week-last/automation-run-rate-limit-exceeded/">
+<meta property="og:title" content="“Automation run rate limit exceeded” in Grok Bot: what it means and what to do">
+<meta property="og:description" content="Your limit or the shared one? How to tell, what to change, and how to retry.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://botfixer5000.github.io/make-your-week-last/automation-run-rate-limit-exceeded/">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "“Automation run rate limit exceeded” in Grok Bot: what it means and what to do", "datePublished": "2026-10-27", "dateModified": "2026-10-27", "author": {"@type": "Organization", "name": "Make Your Week Last"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a href="../">Make Your Week Last</a><nav><a href="../grok-bot-weekly-usage-running-out/">Free guide</a><a href="https://botfixer5000.gumroad.com/l/make-your-week-last">Get the kit</a></nav></div></header>
+<main class="wrap">
+<article>
+<p class="small" style="margin-top:40px">Updated October 27, 2026 · Independent guide, not affiliated with SpaceXSI, xAI, X or Cursor</p>
+<h1>“Automation run rate limit exceeded” in Grok Bot: what it means and what to do</h1>
+<p class="lede">The short answer: this error means a routine run was refused before it started. Either your own routines went over Grok Bot's hourly limits, or, in a known issue, a limit shared by all Grok Bot routines was full even though you barely used it. The run isn't queued or retried, so you have to run it again.</p>
+
+<nav class="card toc"><strong>On this page</strong><ol>
+<li><a href="#means">What the error means</a></li>
+<li><a href="#which">Is it you or the shared limit?</a></li>
+<li><a href="#yours">If your routines hit the limit</a></li>
+<li><a href="#shared">If it's the shared limit</a></li>
+<li><a href="#webhook">Webhook senders: retry the right way</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ol></nav>
+
+<h2 id="means">What "Automation run rate limit exceeded" means</h2>
+<p>Grok Bot's help lists two hourly limits for routines (<a href="https://cursor.com/help/grok-bot/routines">Cursor help: Routines</a>):</p>
+<ul>
+<li>All your routines together can run up to <strong>300 times an hour</strong>.</li>
+<li>Each single routine can run up to <strong>200 times an hour</strong>.</li>
+</ul>
+<p>A run past either limit fails with "Automation run rate limit exceeded". The same help page adds that some runs fail with this error "because of a limit all Grok Bot routines share, even when your own routines run less than that," calls it a known issue, and says engineers are working on a fix.</p>
+<p>Either way, the important part is the same: <strong>a run that fails with this error isn't retried automatically.</strong> Whatever that run was supposed to do didn't happen.</p>
+
+<h2 id="which">Is it you or the shared limit?</h2>
+<p>Look at the exact message. Users posting on the Cursor forum in October 2026 quoted webhook errors that named a platform-wide count, like this:</p>
+<pre>{"success":false,"error":"Automation run rate limit exceeded: grok bot limit 18000 per minute, current_count=18001"}</pre>
+<p>A Cursor team member replied that "that number isn't a counter on your account. It's a shared limit across all Grok Bot routines on the platform," that heavy traffic elsewhere had filled it, and that there was nothing on the user's side to reset (<a href="https://forum.cursor.com/t/automation-webhook-rejected-with-rate-limit-exceeded-despite-low-usage/174897">Cursor forum</a>).</p>
+<p>A quick way to tell:</p>
+<table>
+<tr><th>Sign</th><th>Probably</th></tr>
+<tr><td>Message mentions a huge "per minute" number your routines couldn't reach</td><td>Shared limit</td></tr>
+<tr><td>Your routines run a few times an hour or less</td><td>Shared limit</td></tr>
+<tr><td>One routine has a Slack "any message" trigger on a busy channel, or a webhook that fires in bursts</td><td>Your own limit</td></tr>
+<tr><td>Runs fail at a steady rate when that one routine is busy, and work when it's quiet</td><td>Your own limit</td></tr>
+</table>
+<p>For scale: a routine on the shortest allowed schedule (every five minutes, the minimum gap per <a href="https://docs.x.ai/grok-bot/skills-routines-and-automations">docs.x.ai</a>) runs 12 times an hour. Schedules alone almost never reach 200 an hour. Event triggers can.</p>
+
+<h2 id="yours">If your own routines hit the limit</h2>
+<ol>
+<li><strong>Find the busy one.</strong> Open each bot's details, then Routines on the Details tab. Look for Slack triggers on "any message," triggers that watch all of Slack, and webhooks called by another app.</li>
+<li><strong>Narrow the trigger.</strong> Grok Bot's help says to "narrow its trigger or widen its schedule." For Slack, trigger on a mention of the bot, a specific phrase, or a reaction you add, in one channel. Ask the bot: <em>"Edit your routine: [name]. Only trigger when you're mentioned in #[channel]."</em></li>
+<li><strong>Batch the sender.</strong> If another app calls your webhook for every small event, have it send one call with a list instead.</li>
+<li><strong>Rerun what failed.</strong> Use <strong>Test</strong> on the routine, or resend the webhook call.</li>
+</ol>
+<p>This also saves usage. Every run spends from your weekly pool, and Grok Bot's help warns that a Slack trigger on a busy channel "can use a week of usage in a day." The <a href="../grok-bot-weekly-usage-running-out/">weekly usage guide</a> has the full runs-per-week table.</p>
+
+<h2 id="shared">If it's the shared limit</h2>
+<p>You can't fix it from your account, but you can limit the damage:</p>
+<ul>
+<li><strong>Leave your routines alone.</strong> Pausing, recreating or rewriting a routine won't help with a platform-side limit.</li>
+<li><strong>Rerun anything important</strong> once things settle: Test, or ask the bot to do the work in chat.</li>
+<li><strong>Check the time.</strong> In that thread, Cursor staff said the problem had shown up during "roughly 12:00 to 17:00 UTC," so that's when retries matter most. Treat that as a pattern seen in October, not a rule.</li>
+<li><strong>Watch for updates.</strong> Grok Bot's help says it will update the Routines article when the shared limit no longer affects routines.</li>
+</ul>
+
+<h2 id="webhook">Webhook senders: retry the right way</h2>
+<p>When a webhook-triggered run is refused, the caller gets an HTTP 400 with this error, and the call isn't queued. Many retry policies treat a 400 as permanent and give up. Cursor's staff suggested treating a 400 whose error says "Automation run rate limit exceeded" as temporary and retrying with backoff, "for example after 1, 2, 5 and 10 minutes" (<a href="https://forum.cursor.com/t/automation-webhook-rejected-with-rate-limit-exceeded-despite-low-usage/174897">Cursor forum</a>).</p>
+<p>Remember that a 200 means Grok Bot accepted the call and started a run, not that the bot finished. Check the bot's chat for the result (<a href="https://cursor.com/help/grok-bot/routines">Cursor help</a>).</p>
+<p>One more safeguard: write the routine so a repeat call is harmless. SpaceXSI's docs recommend making retries idempotent where possible (<a href="https://docs.x.ai/grok-bot/skills-routines-and-automations">docs</a>), for example "skip this row if the same ID is already in the log."</p>
+
+<div class="card">
+<strong>Build routines that don't trip limits in the first place.</strong> <em>Quiet Routines</em> ($7) is 15 copy-paste recipes that use the narrowest trigger that does the job, including a mention-only Slack helper, a reaction-to-task trigger and a webhook intake with the retry note built in.
+<div class="cta" style="margin-bottom:0"><a class="btn" href="https://botfixer5000.gumroad.com/l/quiet-routines">Get Quiet Routines: $7</a><a class="btn ghost" href="https://x.ai/bot/VB-5Vtr02fQfb85VP9PFY">Free: find my busiest routines</a></div>
+</div>
+<p class="small">The free <a href="https://x.ai/bot/VB-5Vtr02fQfb85VP9PFY">Usage Auditor template</a> lists your routines, works out runs per week and flags the busy ones. It's read-only. The <a href="https://botfixer5000.gumroad.com/l/make-your-week-last">$12 Make Your Week Last kit</a> helps you measure your whole week and cap surprise charges.</p>
+
+<h2 id="faq">FAQ</h2>
+<details><summary>Does this error use up my weekly usage?</summary><p>Grok Bot's help doesn't say. What is clear: the refused run never started, so its work didn't happen, and the rerun spends usage like any other run.</p></details>
+<details><summary>Is Grok Bot down when I see this?</summary><p>Not necessarily. Forum users reported this error while status.cursor.com showed everything operational (<a href="https://forum.cursor.com/t/github-pr-triggering-automation-rate-limit/174611">Cursor forum</a>). Your bots may still answer normally in chat.</p></details>
+<details><summary>Can I ask support to reset my counter?</summary><p>If it's the shared limit, there's nothing on your account to reset, according to the Cursor staff reply in the forum thread. If it's your own limit, narrowing the trigger is the fix.</p></details>
+<h2 id="more">More free guides</h2>
+<ul><li><a href="../grok-bot-weekly-usage-running-out/">Grok Bot weekly usage running out? 8 fixes that work</a></li><li><a href="../grok-bot-routine-not-running/">Grok Bot routine didn't run? A 7-point checklist</a></li><li><a href="../which-plan-includes-grok-bot/">Which plan includes Grok Bot? Premium vs Super vs Ultra</a></li><li><a href="../grok-bot-routine-triggers/">Grok Bot routine triggers explained: schedule, Slack, email, webhook</a></li></ul>
+</article>
+</main>
+<footer><div class="wrap small">Independent guide. Not affiliated with SpaceXSI, xAI, X or Cursor. Plans and menus change, so check the linked official pages. Contact: <a href="mailto:undying.trash@mail.grokbot.com">undying.trash@mail.grokbot.com</a></div></footer>
+</body>
+</html>
