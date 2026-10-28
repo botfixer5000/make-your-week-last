@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grok Bot routine triggers explained (Oct 2026)</title>
+<meta name="description" content="Every Grok Bot routine trigger: schedule, Slack, email, GitHub, Linear, Sentry, PagerDuty and webhooks, and which ones use the least usage.">
+<link rel="canonical" href="https://botfixer5000.github.io/make-your-week-last/grok-bot-routine-triggers/">
+<meta property="og:title" content="Grok Bot routine triggers explained: schedule, Slack, email, webhook">
+<meta property="og:description" content="Every trigger, how each one works, and which is cheapest.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://botfixer5000.github.io/make-your-week-last/grok-bot-routine-triggers/">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Grok Bot routine triggers explained: schedule, Slack, email, webhook", "datePublished": "2026-10-27", "dateModified": "2026-10-27", "author": {"@type": "Organization", "name": "Make Your Week Last"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a href="../">Make Your Week Last</a><nav><a href="../grok-bot-weekly-usage-running-out/">Free guide</a><a href="https://botfixer5000.gumroad.com/l/make-your-week-last">Get the kit</a></nav></div></header>
+<main class="wrap">
+<article>
+<p class="small" style="margin-top:40px">Updated October 27, 2026 · Independent guide, not affiliated with SpaceXSI, xAI, X or Cursor</p>
+<h1>Grok Bot routine triggers explained: schedule, Slack, email, webhook</h1>
+<p class="lede">The short answer: a Grok Bot routine can start on a <strong>schedule</strong>, a <strong>Slack</strong> message, a <strong>GitHub, Linear, Sentry or PagerDuty</strong> event, an <strong>email</strong> to your bot's own address, or a <strong>webhook</strong> call. Every run spends usage, so the cheapest trigger is the one that fires only when there's real work.</p>
+
+<nav class="card toc"><strong>On this page</strong><ol>
+<li><a href="#list">Every trigger, in one table</a></li>
+<li><a href="#schedule">Schedules</a></li>
+<li><a href="#slack">Slack triggers</a></li>
+<li><a href="#email">Email triggers</a></li>
+<li><a href="#events">GitHub, Linear, Sentry, PagerDuty</a></li>
+<li><a href="#webhook">Webhooks</a></li>
+<li><a href="#cheap">Which is cheapest?</a></li>
+</ol></nav>
+
+<h2 id="list">Every trigger, in one table</h2>
+<p>Grok Bot's help says a routine "can run on a schedule, or when something happens, such as a Slack message, a GitHub, Linear, Sentry, or PagerDuty event, an email, or a webhook call," and that routines run in the cloud while your laptop is closed (<a href="https://cursor.com/help/grok-bot/routines">Cursor help: Routines</a>).</p>
+<table>
+<tr><th>Trigger</th><th>Starts a run when</th><th>Main control</th></tr>
+<tr><td>Schedule</td><td>A set time comes round</td><td>How often</td></tr>
+<tr><td>Slack</td><td>The bot is mentioned, a word or phrase appears, you react, or any message</td><td>Which event and which channel</td></tr>
+<tr><td>Email</td><td>Mail arrives at your mail.grokbot.com address</td><td>Which senders or domain</td></tr>
+<tr><td>GitHub, Linear, Sentry, PagerDuty</td><td>An event happens in that service</td><td>Which repo, project or event</td></tr>
+<tr><td>Webhook</td><td>Another app sends an HTTP POST</td><td>When the other app calls</td></tr>
+</table>
+<p>You don't set any of these in a menu. You ask the bot that should own the job, in plain words, and it creates the routine. To check one, click the bot's name at the top of the chat, find Routines on the Details tab, and open the routine. <strong>When to run</strong> shows the schedule or trigger in words.</p>
+
+<h2 id="schedule">Schedules</h2>
+<p>Ask for a schedule in plain words, like "every weekday at 8:00 AM" or "every 2 hours." Schedules use the time zone in Settings, under Bot, labeled Timezone. A new routine waits for its next scheduled time instead of running right away (<a href="https://cursor.com/help/grok-bot/routines">Cursor help</a>). Schedules must be at least five minutes apart, and one bot can own up to 50 routines (<a href="https://docs.x.ai/grok-bot/skills-routines-and-automations">docs.x.ai</a>).</p>
+<p>The cost is easy to predict because you set the run count yourself: hourly is 168 runs a week, twice a day is 14, daily is 7, weekly is 1. Most watch jobs (inbox, prices, news) work fine once or twice a day.</p>
+
+<h2 id="slack">Slack triggers</h2>
+<p>A routine can start "when the Bot is mentioned, when a word or phrase is mentioned, when you react to a message, or on any message," in one channel or all of Slack. Only new messages count. The trigger is separate from the Slack app, but you need Slack connected on the Cursor account that owns the bot (<a href="https://cursor.com/help/grok-bot/routines">Cursor help</a>).</p>
+<p>This is the trigger with the widest cost range. Grok Bot's help warns that a trigger on any message in a busy channel "runs often and spends usage on messages that don't need the Bot." A mention or a reaction only fires when a person means it. Example request:</p>
+<pre>Set up a routine: when someone mentions you in #support, read that thread and draft a reply here for me. Don't post in Slack until I approve.</pre>
+
+<h2 id="email">Email triggers</h2>
+<p>You can claim one email address at mail.grokbot.com, and you can't rename or delete it. The address belongs to you, and all your bots can use it in your chats and routines. New mail doesn't wake a bot on its own. It acts only through a routine you create. An email routine can watch mail from anyone, from specific addresses, or from a whole domain like *@example.com. By default it only runs for senders that pass standard email authentication checks, and routines can't filter by subject (<a href="https://cursor.com/help/grok-bot/agent-email">Cursor help: email address</a>).</p>
+<p>Two things to know. Email a routine writes waits as a draft until you approve it. And this trigger watches your mail.grokbot.com address, not your personal inbox. To act on your own mail, either forward specific senders to the bot's address, or run a scheduled check of your connected inbox once or twice a day.</p>
+<pre>Set up a routine: when an email arrives at your address from billing@example.com, add the amount and date to ~/receipts.csv. Only message me if it's over $50.</pre>
+
+<h2 id="events">GitHub, Linear, Sentry and PagerDuty</h2>
+<p>These start a run when something happens in the service. SpaceXSI's docs say these integrations "are separate from the Slack or GitHub apps and may require their own connection flow," and recommend "a narrow matching rule and a clear response." They also warn against broad listeners: they "create noise, consume usage, and increase the chance of acting on irrelevant input" (<a href="https://docs.x.ai/grok-bot/skills-routines-and-automations">docs.x.ai</a>). Pick one repository or project and one kind of event, and ask the bot which events it can watch on your account.</p>
+
+<h2 id="webhook">Webhooks</h2>
+<p>A webhook lets any other app start a routine. Ask the bot to add a webhook trigger, then open the routine on desktop. The Webhook section shows <strong>POST to</strong> (the URL), <strong>key</strong> and the full <strong>header</strong>. The sender can include a JSON body, which the bot gets along with the routine's instruction. A 200 response means a run started, not that it finished (<a href="https://cursor.com/help/grok-bot/routines">Cursor help</a>). Users on the Cursor forum in October 2026 reported that a refused call gets an HTTP 400 saying "Automation run rate limit exceeded." That means the run didn't start. <a href="../automation-run-rate-limit-exceeded/">Here's what that means and how to retry</a>.</p>
+
+<h2 id="cheap">Which trigger is cheapest?</h2>
+<p>No trigger has a published price. What costs usage is the number of runs and how heavy each one is. A rough order, cheapest first:</p>
+<ol>
+<li><strong>Reaction or mention in Slack:</strong> runs only when a person asks.</li>
+<li><strong>Webhook or a narrow event:</strong> runs only when something real happens.</li>
+<li><strong>Email from named senders:</strong> runs once per matching email.</li>
+<li><strong>Daily or twice-daily schedule:</strong> 7 to 14 runs a week, predictable.</li>
+<li><strong>Short schedules and "any message" triggers:</strong> hundreds of runs a week. Grok Bot's help says these "can use a week of usage in a day."</li>
+</ol>
+<p>Whatever the trigger, add one line: "If nothing changed since the last run, end silently." A run that finds nothing still spends usage, but at least it doesn't spend your attention too.</p>
+
+<div class="card">
+<strong>Skip the trial and error.</strong> <em>Quiet Routines</em> ($7) is 15 copy-paste recipes, each on the cheapest trigger for its job: a mention-only Slack helper, reaction to task, a receipt collector on the email trigger, a repo watch, a webhook intake, price and page watches, and more. It includes a one-page trigger picker.
+<div class="cta" style="margin-bottom:0"><a class="btn" href="https://botfixer5000.gumroad.com/l/quiet-routines">Get Quiet Routines: $7</a><a class="btn ghost" href="https://x.ai/bot/VB-5Vtr02fQfb85VP9PFY">Free: audit my routines</a></div>
+</div>
+<p class="small">Already have routines? The free <a href="https://x.ai/bot/VB-5Vtr02fQfb85VP9PFY">Usage Auditor template</a> works out runs per week for each one and drafts cheaper versions. It's read-only. For the whole picture, including spending caps and a plan decision in dollars, see the <a href="https://botfixer5000.gumroad.com/l/make-your-week-last">$12 Make Your Week Last kit</a>.</p>
+<h2 id="more">More free guides</h2>
+<ul><li><a href="../grok-bot-weekly-usage-running-out/">Grok Bot weekly usage running out? 8 fixes that work</a></li><li><a href="../grok-bot-routine-not-running/">Grok Bot routine didn't run? A 7-point checklist</a></li><li><a href="../automation-run-rate-limit-exceeded/">“Automation run rate limit exceeded” in Grok Bot: what it means and what to do</a></li><li><a href="../which-plan-includes-grok-bot/">Which plan includes Grok Bot? Premium vs Super vs Ultra</a></li></ul>
+</article>
+</main>
+<footer><div class="wrap small">Independent guide. Not affiliated with SpaceXSI, xAI, X or Cursor. Plans and menus change, so check the linked official pages. Contact: <a href="mailto:undying.trash@mail.grokbot.com">undying.trash@mail.grokbot.com</a></div></footer>
+</body>
+</html>
