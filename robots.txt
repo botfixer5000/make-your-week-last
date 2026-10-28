@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://botfixer5000.github.io/make-your-week-last/sitemap.xml

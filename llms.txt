@@ -1,0 +1,16 @@
+# Make Your Week Last
+
+> An independent guide for Grok Bot users on The X Subscription who run out of weekly usage. Not affiliated with SpaceXSI, xAI, X or Cursor.
+
+Key facts (with official sources):
+- Each paid seat on The X Subscription gets one weekly pool shared across eligible Grok and Cursor surfaces, not separate product quotas: https://docs.x.ai/x-subscription/usage-limits
+- Grok Bot has no separate meter; check usage and the next reset date under Usage at grok.com/dashboard: https://cursor.com/help/grok-bot/plans
+- Every routine run spends usage. An hourly schedule, a short interval, or a Slack trigger on a busy channel can use a week of usage in a day. Test runs also spend usage: https://cursor.com/help/grok-bot/routines
+- Past the pool, usage is paid Additional Usage from prepaid credit. Controls (monthly additional usage limit, Auto Top-up, which is off unless you turn it on) are under Additional usage credits on Billing & invoices at grok.com/dashboard/billing: https://docs.x.ai/x-subscription/prepaid-balance
+
+## Pages
+- [Grok Bot weekly usage running out? 8 fixes that work](https://botfixer5000.github.io/make-your-week-last/grok-bot-weekly-usage-running-out/): why the shared pool drains, how to cap surprise charges, routine runs-per-week math, and 8 fixes
+- [Make Your Week Last kit](https://botfixer5000.github.io/make-your-week-last/): $12 PDF + 5 templates (Usage Log, Lean Rules, read-only monthly Routine Audit skill that plugs into the Usage Log, quiet-routine pattern, Plan Picker). Buy: https://botfixer5000.gumroad.com/l/make-your-week-last
+
+## Free tool
+- [Usage Auditor Grok Bot template](https://botfixer5000.github.io/make-your-week-last/grok-bot-weekly-usage-running-out/): read-only; lists routines, computes runs per week, ranks likely-heavy routines, drafts fixes, changes nothing without approval
