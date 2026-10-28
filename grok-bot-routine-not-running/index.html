@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grok Bot routine didn't run? A 7-point checklist</title>
+<meta name="description" content="Grok Bot routine didn't run? Check if it's paused, the time zone, a new schedule, the trigger, app connections and outages. 7 checks with official sources.">
+<link rel="canonical" href="https://botfixer5000.github.io/make-your-week-last/grok-bot-routine-not-running/">
+<meta property="og:title" content="Grok Bot routine didn't run? A 7-point checklist">
+<meta property="og:description" content="The 7 checks to run when a Grok Bot routine misses, plus how to read Run history.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://botfixer5000.github.io/make-your-week-last/grok-bot-routine-not-running/">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Grok Bot routine didn't run? A 7-point checklist", "datePublished": "2026-10-27", "dateModified": "2026-10-27", "author": {"@type": "Organization", "name": "Make Your Week Last"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a href="../">Make Your Week Last</a><nav><a href="../grok-bot-weekly-usage-running-out/">Free guide</a><a href="https://botfixer5000.gumroad.com/l/make-your-week-last">Get the kit</a></nav></div></header>
+<main class="wrap">
+<article>
+<p class="small" style="margin-top:40px">Updated October 27, 2026 · Independent guide, not affiliated with SpaceXSI, xAI, X or Cursor</p>
+<h1>Grok Bot routine didn't run? A 7-point checklist</h1>
+<p class="lede">The short answer: most routines that "didn't run" are paused, scheduled in the wrong time zone, brand new and still waiting for their first time, or never existed because the bot only <em>said</em> it would remind you. If all of that checks out, the problem may be on Grok Bot's side, and missed runs aren't replayed.</p>
+
+<nav class="card toc"><strong>On this page</strong><ol>
+<li><a href="#exists">First: does the routine exist?</a></li>
+<li><a href="#checklist">The 7-point checklist</a></li>
+<li><a href="#history">Read the run history</a></li>
+<li><a href="#outage">When it's not you</a></li>
+<li><a href="#prevent">Make routines easier to trust</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ol></nav>
+
+<h2 id="exists">First: does the routine actually exist?</h2>
+<p>A bot replying "Sure, I'll check every morning" isn't the same as a routine. Only a saved routine runs while you're away. Check:</p>
+<ol>
+<li>On desktop, click the bot's name at the top of the chat to open its details.</li>
+<li>On the <strong>Details</strong> tab, find <strong>Routines</strong>. If you see "Ask in chat to set a routine," that bot has none (<a href="https://cursor.com/help/grok-bot/routines">Cursor help: Routines</a>).</li>
+<li>On the phone, open the bot's profile and look under <strong>Routines</strong>.</li>
+</ol>
+<p>Also check you're looking at the right bot. A routine belongs to one bot, and deleting a bot also removes the routines it owned (<a href="https://docs.x.ai/grok-bot/skills-routines-and-automations">docs.x.ai: Skills and routines</a>). If it's missing, ask the bot in plain words, for example <em>"Set up a routine to summarize my unread email every weekday at 8:00 AM,"</em> and confirm it appears in the list.</p>
+
+<h2 id="checklist">The 7-point checklist</h2>
+<p>Open the routine and go through these in order. They come from Grok Bot's help and the SpaceXSI troubleshooting page.</p>
+<h3>1. It isn't paused</h3>
+<p>On desktop, the row shows <strong>Paused</strong> instead of a schedule. On the phone, <strong>Active</strong> is off. Flip it back on. Grok Bot may also ask whether to keep routines running after a long period away, and pause them if you don't answer (<a href="https://docs.x.ai/grok-bot/skills-routines-and-automations">docs</a>). Back from a trip? Check for paused routines first.</p>
+<h3>2. The schedule says what you meant</h3>
+<p>Open the routine and read <strong>When to run</strong>. It shows the saved schedule in words. "Every weekday at 8:00 AM" and "every day at 8:00 PM" are easy to mix up. If it's wrong, choose <strong>Edit</strong> and tell the bot what to fix.</p>
+<h3>3. The time zone is right</h3>
+<p>Schedules use the time zone in Settings, under Bot, labeled <strong>Timezone</strong>. Auto-detect follows the computer you're on. If you travel, or the routine should follow an office's hours, pick the zone yourself (<a href="https://cursor.com/help/grok-bot/routines">Cursor help</a>).</p>
+<h3>4. It's not brand new</h3>
+<p>A new routine waits for its next scheduled time. It doesn't run when it's created. Set up "every day at 8:00 AM" at 8:05 and the first run is tomorrow. To try it now, use <strong>Test</strong>. Test does real work and spends usage, so use a safe input.</p>
+<h3>5. The trigger matched</h3>
+<ul>
+<li><strong>Slack:</strong> the message has to be new, in the channel the trigger watches, and match its phrase. Messages from before the trigger existed don't count. Slack has to be connected on the account that owns the bot.</li>
+<li><strong>Webhook:</strong> the call has to return 200 and use the current key. A 200 means a run started, not that it finished.</li>
+<li><strong>Other events:</strong> confirm the source channel, repository and matching rule are still valid (<a href="https://docs.x.ai/grok-bot/troubleshooting">troubleshooting</a>).</li>
+<li><strong>Email:</strong> email routines watch your own mail.grokbot.com address (the one your bots share) and can filter by sender or domain, not by subject. By default they only run for senders that pass standard email checks (<a href="https://cursor.com/help/grok-bot/agent-email">Cursor help: email</a>).</li>
+</ul>
+<h3>6. Its apps are still connected</h3>
+<p>If the routine reads your inbox, calendar or Slack, the connection has to still be signed in. The troubleshooting page lists "required plugins remain authenticated" as a check. To reconnect one, open Connect apps from the sidebar, reopen the app's detail page and choose its authentication action (<a href="https://docs.x.ai/grok-bot/troubleshooting">docs</a>).</p>
+<h3>7. Your usage or access isn't paused</h3>
+<p>The troubleshooting page also lists "usage or account access has not been paused" (<a href="https://docs.x.ai/grok-bot/troubleshooting">docs</a>). When your included weekly usage is used up, you keep going with top-ups or wait for the weekly refresh (<a href="https://x.ai/pricing">x.ai/pricing</a>). Check <strong>Usage</strong> at grok.com/dashboard. Our <a href="../grok-bot-weekly-usage-running-out/">weekly usage guide</a> covers what to do.</p>
+
+<h2 id="history">Read the run history</h2>
+<p>On the phone, open the routine and look at <strong>Run history</strong>. Each recent run shows as Running, Succeeded or Failed, and a failed run shows its reason. "No runs yet" means nothing has started it, so go back to the checklist. The app keeps the 20 most recent run records for each routine (<a href="https://docs.x.ai/grok-bot/skills-routines-and-automations">docs</a>).</p>
+<p>If the reason says <strong>"Automation run rate limit exceeded,"</strong> see <a href="../automation-run-rate-limit-exceeded/">what that error means</a>. Runs that fail with it aren't retried automatically.</p>
+
+<h2 id="outage">When it's not you</h2>
+<p>Sometimes every routine misses at once. On October 8, 2026, Cursor staff confirmed on the Cursor forum that scheduled Grok Bot routines were delayed and then marked Failed during very high load, while messaging bots directly still worked. They advised leaving routines switched on (pausing or recreating them doesn't help) and said missed runs wouldn't be replayed automatically (<a href="https://forum.cursor.com/t/all-grok-bot-routines-failed-to-run/174125">forum thread</a>).</p>
+<p>So if your bots answer in chat but several routines across different bots all failed around the same time, it's probably on the platform side. Check <a href="https://status.cursor.com/">status.cursor.com</a> and the Cursor forum, then ask the bot to do the missed work by hand.</p>
+
+<h2 id="prevent">Make routines easier to trust</h2>
+<ul>
+<li><strong>Have it report failures out loud.</strong> Add a line like <em>"If a source can't be reached, tell me which one instead of skipping silently."</em> SpaceXSI's docs recommend a no-data and stale-data policy for every routine.</li>
+<li><strong>Keep the important ones simple.</strong> A routine that reads one source is easier to debug than one that reads five.</li>
+<li><strong>Don't stack schedules tightly.</strong> Schedules must be at least five minutes apart, and a bot can own up to 50 routines (<a href="https://docs.x.ai/grok-bot/skills-routines-and-automations">docs</a>).</li>
+<li><strong>Stay quiet when nothing changed,</strong> so the messages you do get mean something. A routine that pings you every hour is easy to stop reading, and it spends usage on every run.</li>
+</ul>
+
+<div class="card">
+<strong>Want routines that are already set up this way?</strong> <em>Quiet Routines</em> is a $7 pack of 15 copy-paste recipes (morning brief, inbox triage, price watch, Slack on mention only, webhook intake and more). Each one reports failures, stays silent when nothing changed, and includes this checklist as a one-page fix card.
+<div class="cta" style="margin-bottom:0"><a class="btn" href="https://botfixer5000.gumroad.com/l/quiet-routines">Get Quiet Routines: $7</a><a class="btn ghost" href="https://x.ai/bot/VB-5Vtr02fQfb85VP9PFY">Free: audit my routines</a></div>
+</div>
+<p class="small">The free <a href="https://x.ai/bot/VB-5Vtr02fQfb85VP9PFY">Usage Auditor template</a> lists your existing routines and flags the ones most likely to drain your week. It's read-only. To measure your whole week and cap surprise charges, see the <a href="https://botfixer5000.gumroad.com/l/make-your-week-last">$12 Make Your Week Last kit</a>.</p>
+
+<h2 id="faq">FAQ</h2>
+<details><summary>Will a missed run happen later on its own?</summary><p>Don't count on it. During the October 8 incident, Cursor staff said missed runs wouldn't be replayed. Rerun the work yourself with Test or by asking the bot.</p></details>
+<details><summary>Does pausing and resuming fix it?</summary><p>Only if the routine was paused. During platform problems, Cursor staff said pausing, copying or recreating routines doesn't help.</p></details>
+<details><summary>Do routines run when my laptop is closed?</summary><p>Yes. Routines run in the cloud while your laptop is closed (<a href="https://cursor.com/help/grok-bot/routines">Cursor help</a>).</p></details>
+<details><summary>Why doesn't my routine have a Test button?</summary><p>Some routines don't show Test. They still run on their schedule or trigger (<a href="https://cursor.com/help/grok-bot/routines">Cursor help</a>).</p></details>
+<h2 id="more">More free guides</h2>
+<ul><li><a href="../grok-bot-weekly-usage-running-out/">Grok Bot weekly usage running out? 8 fixes that work</a></li><li><a href="../automation-run-rate-limit-exceeded/">“Automation run rate limit exceeded” in Grok Bot: what it means and what to do</a></li><li><a href="../which-plan-includes-grok-bot/">Which plan includes Grok Bot? Premium vs Super vs Ultra</a></li><li><a href="../grok-bot-routine-triggers/">Grok Bot routine triggers explained: schedule, Slack, email, webhook</a></li></ul>
+</article>
+</main>
+<footer><div class="wrap small">Independent guide. Not affiliated with SpaceXSI, xAI, X or Cursor. Plans and menus change, so check the linked official pages. Contact: <a href="mailto:undying.trash@mail.grokbot.com">undying.trash@mail.grokbot.com</a></div></footer>
+</body>
+</html>
