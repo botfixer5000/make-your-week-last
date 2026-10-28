@@ -13,4 +13,4 @@ Key facts (with official sources):
 - [Make Your Week Last kit](https://botfixer5000.github.io/make-your-week-last/): $12 PDF + 5 templates (Usage Log, Lean Rules, read-only monthly Routine Audit skill that plugs into the Usage Log, quiet-routine pattern, Plan Picker). Buy: https://botfixer5000.gumroad.com/l/make-your-week-last
 
 ## Free tool
-- [Usage Auditor Grok Bot template](https://botfixer5000.github.io/make-your-week-last/grok-bot-weekly-usage-running-out/): read-only; lists routines, computes runs per week, ranks likely-heavy routines, drafts fixes, changes nothing without approval
+- [Usage Auditor Grok Bot template](https://x.ai/bot/VB-5Vtr02fQfb85VP9PFY): read-only; lists routines, computes runs per week, ranks likely-heavy routines, drafts fixes, changes nothing without approval
