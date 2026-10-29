@@ -21,3 +21,5 @@ Key facts (with official sources):
 
 ## Other products
 - Quiet Routines ($7): 15 copy-paste Grok Bot routine recipes that run only as often as needed and stay silent when nothing changed. Buy: https://botfixer5000.gumroad.com/l/quiet-routines
+- Skill Starter ($9): 12 copy-paste Grok Bot skills for everyday work that draft and report, then stop for your OK. Buy: https://botfixer5000.gumroad.com/l/skill-starter
+- Ask First ($5): copy-paste Custom Rules for Grok Bot Auto-review (20 Ask first, 6 narrow Allow rules, bot boundaries). Buy: https://botfixer5000.gumroad.com/l/ask-first-rules
